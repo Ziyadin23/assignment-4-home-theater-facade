@@ -40,10 +40,10 @@ On Windows PowerShell with JDK 17 on PATH:
 
 ```powershell
 New-Item -ItemType Directory -Force build/classes, build/test-classes | Out-Null
-Get-ChildItem src/main/java -Recurse -Filter *.java | ForEach-Object { $_.FullName } | Set-Content build/main-sources.txt
+Get-ChildItem src/main/java -Recurse -Filter *.java | ForEach-Object { '"' + $_.FullName + '"' } | Set-Content build/main-sources.txt
 javac --release 17 -Xlint:all -Werror -d build/classes '@build/main-sources.txt'
 java -cp build/classes theater.Client
-Get-ChildItem src/test/java -Recurse -Filter *.java | ForEach-Object { $_.FullName } | Set-Content build/test-sources.txt
+Get-ChildItem src/test/java -Recurse -Filter *.java | ForEach-Object { '"' + $_.FullName + '"' } | Set-Content build/test-sources.txt
 javac --release 17 -Xlint:all -Werror -cp build/classes -d build/test-classes '@build/test-sources.txt'
 java -cp 'build/classes;build/test-classes' theater.HomeTheaterTests
 ```
@@ -107,7 +107,9 @@ The report includes an annotated code excerpt and justification for each princip
 ## Verification and defense
 
 Verified on Eclipse Temurin **JDK 17.0.20.1** with `--release 17 -Xlint:all -Werror`.
-All **14 tests passed**. Full output is in `docs/test-results.txt`. The tests cover
+All **14 tests passed**. The [Word report](docs/Assignment_4_Facade_Pattern_Report.docx)
+includes the required introduction, UML, annotated Clean Code excerpts, conclusion,
+and repository link. Full output is in `docs/test-results.txt`. The tests cover
 coordination, invalid requests, recovery, geometry, device ordering, the public
 API boundary, and independent subsystem use. `docs/defense-guide.md` supplies
 the walkthrough and likely instructor questions.
