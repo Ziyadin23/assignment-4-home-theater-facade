@@ -1,0 +1,70 @@
+@startuml
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam shadowing false
+class Client {
+  +{static} main(args : String[]) : void
+}
+class HomeTheaterFacade {
+  -player : DvdPlayer
+  -amplifier : Amplifier
+  -projector : Projector
+  -screen : Screen
+  -lights : TheaterLights
+  +HomeTheaterFacade()
+  +watchMovie(title : String) : String
+  +endMovie() : String
+  -restoreRoom() : void
+}
+class DvdPlayer {
+  -catalogue : Map<String, Integer>
+  -loadedMovie : String
+  -elapsedMinutes : int
+  +requireAvailable(title : String) : void
+  +load(title : String) : void
+  +play() : void
+  +advanceMinutes(minutes : int) : void
+  +isPlaying() : boolean
+  +powerOff() : void
+}
+class Amplifier {
+  -source : DvdPlayer
+  -volume : int
+  +setVolume(volume : int) : void
+  +playFrom(source : DvdPlayer) : void
+  +isAudible() : boolean
+  +powerOff() : void
+}
+class Projector {
+  -source : DvdPlayer
+  -screen : Screen
+  -lampHealthy : boolean
+  +powerOn() : void
+  +project(source : DvdPlayer, screen : Screen) : void
+  +getImageDiagonalInches() : double
+  +replaceLamp() : void
+  +powerOff() : void
+}
+class Screen {
+  -widthCentimeters : double
+  -lowered : boolean
+  +lower() : void
+  +raise() : void
+  +diagonalInches(aspectRatio : double) : double
+}
+class TheaterLights {
+  -brightness : int
+  +dimTo(brightness : int) : void
+  +getBrightness() : int
+}
+Client ..> HomeTheaterFacade : uses
+HomeTheaterFacade --> "1" DvdPlayer
+HomeTheaterFacade --> "1" Amplifier
+HomeTheaterFacade --> "1" Projector
+HomeTheaterFacade --> "1" Screen
+HomeTheaterFacade --> "1" TheaterLights
+Amplifier --> "0..1" DvdPlayer : audio source
+Projector --> "0..1" DvdPlayer : video source
+Projector --> "0..1" Screen : projects onto
+note bottom : Selected members shown; + public, - private.\nNo subsystem has a reference to HomeTheaterFacade.
+@enduml

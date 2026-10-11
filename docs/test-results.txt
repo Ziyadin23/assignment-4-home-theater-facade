@@ -1,0 +1,15 @@
+PASS Complete movie session
+PASS Restore previous lighting
+PASS Repeated shutdown is harmless
+PASS Reject invalid titles before changing state
+PASS Reject overlapping sessions
+PASS Recover from a failed projector lamp
+PASS Restart after repairing the lamp
+PASS Advanced clients bypass the facade
+PASS Audio and video follow source state
+PASS Playback completion and replay
+PASS Reject invalid numeric settings
+PASS Reject unsafe device ordering
+PASS Public facade API hides subsystem types
+PASS Validate and protect the movie catalogue
+Passed 14 tests.
