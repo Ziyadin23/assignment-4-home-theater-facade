@@ -27,6 +27,11 @@
 ./scripts/test.sh
 ```
 
+In the default demo, explain each numbered setup step, the active playback state,
+the calculated image diagonal, and the shutdown steps. The final state confirms
+that the devices are off and the previous lighting has been restored. The client
+prints text returned by the facade and never accesses the device classes.
+
 Explain that the invalid-movie command intentionally returns a nonzero exit code.
 In IntelliJ, run `Client` with a movie title as one quoted program argument, then
 run `HomeTheaterTests`. Set a breakpoint inside the failed-startup test to inspect

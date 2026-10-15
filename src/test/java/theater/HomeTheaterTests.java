@@ -34,19 +34,24 @@ public final class HomeTheaterTests {
 
     private static void completeMovieSession() {
         Fixture f = new Fixture(true);
-        check(f.facade.watchMovie("Interstellar").equals("Now watching: Interstellar"));
+        String playback = f.facade.watchMovie("Interstellar");
+        check(playback.contains("Now watching: Interstellar"));
+        check(playback.contains("Audio output: ACTIVE") && playback.contains("Projection: ACTIVE"));
         check(f.player.isPlaying() && f.amplifier.isAudible() && f.projector.isProjecting());
         check(f.screen.isLowered() && f.lights.getBrightness() == 15);
         check(f.amplifier.getVolume() == 5);
-        f.facade.endMovie();
+        String shutdown = f.facade.endMovie();
+        check(shutdown.contains("DVD player: OFF") && shutdown.contains("Projector: OFF"));
         f.requireIdle(100);
     }
 
     private static void restorePreviousLighting() {
         Fixture f = new Fixture(true);
         f.lights.dimTo(65);
-        f.facade.watchMovie("Inception");
-        f.facade.endMovie();
+        String playback = f.facade.watchMovie("Inception");
+        check(playback.contains("Lights dimmed: 65% -> 15%."));
+        String shutdown = f.facade.endMovie();
+        check(shutdown.contains("Lighting restored to 65%."));
         f.requireIdle(65);
     }
 

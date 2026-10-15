@@ -8,8 +8,12 @@ public final class Client {
         HomeTheaterFacade theater = new HomeTheaterFacade();
         String movie = args.length == 0 ? "Interstellar" : args[0];
         try {
+            System.out.println("=== HOME THEATER FACADE DEMO ===");
+            System.out.println("\n--- Start movie ---");
             System.out.println(theater.watchMovie(movie));
+            System.out.println("\n--- End movie ---");
             System.out.println(theater.endMovie());
+            System.out.println("\n--- End movie again ---");
             System.out.println(theater.endMovie());
         } catch (IllegalArgumentException | IllegalStateException failure) {
             System.err.println("Movie session failed: " + failure.getMessage());

@@ -18,11 +18,47 @@ On Linux or macOS, from the repository root:
 ./scripts/test.sh
 ```
 
-Expected default demonstration output:
+The default demonstration prints numbered setup and shutdown steps, followed by
+actual device states. The image diagonal is calculated by the projector and screen.
+The client still uses only the facade; its two operations return these text reports.
+The full verified transcript is also saved in `docs/demo-output.txt`.
 
 ```text
+=== HOME THEATER FACADE DEMO ===
+
+--- Start movie ---
+Preparing movie: Interstellar
+  [1] Lights dimmed: 100% -> 15%.
+  [2] Projection screen lowered.
+  [3] DVD player powered on; disc loaded; playback started.
+  [4] Amplifier powered on; DVD audio connected; volume 5/10.
+  [5] Projector powered on; DVD video connected to the screen.
+
 Now watching: Interstellar
+  DVD playback: PLAYING
+  Audio output: ACTIVE
+  Projection: ACTIVE
+  Image diagonal: 108.4 inches.
+  Screen position: LOWERED
+  Room brightness: 15%.
+
+--- End movie ---
+Ending movie: Interstellar
+  [1] Projector powered off.
+  [2] Amplifier powered off.
+  [3] DVD player powered off; disc unloaded.
+  [4] Projection screen raised.
+  [5] Lighting restored to 100%.
+
+Room after shutdown:
+  DVD player: OFF
+  Amplifier: OFF
+  Projector: OFF
+  Screen position: RAISED
+  Room brightness: 100%.
 Movie ended. Devices off, screen raised, previous lighting restored.
+
+--- End movie again ---
 No movie session is active.
 ```
 
