@@ -147,8 +147,12 @@ All **14 tests passed**. The [Word report](docs/Assignment_4_Facade_Pattern_Repo
 includes the required introduction, UML, annotated Clean Code excerpts, conclusion,
 and repository link. Full output is in `docs/test-results.txt`. The tests cover
 coordination, invalid requests, recovery, geometry, device ordering, the public
-API boundary, and independent subsystem use. `docs/defense-guide.md` supplies
-the walkthrough and likely instructor questions.
+API boundary, and independent subsystem use.
+
+The [defense guide in Word](docs/Assignment_4_Facade_Defense_Guide.docx) and
+[online study guide](docs/defense-guide.md) explain Facade and key terms, the UML
+diagram, setup and recovery, Clean Code principles, advantages and disadvantages,
+related patterns, and practice questions with answers.
 
 The program is synchronous and intended for one caller. Device power-off methods
 cannot fail in this simulation. Physical hardware would require device adapters,
